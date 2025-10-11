@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnson Obhalloju - AI/ML Engineer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --primary: #00ff88;
+            --secondary: #ff0066;
+            --tertiary: #0099ff;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #111111;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --gradient: linear-gradient(135deg, var(--primary), var(--tertiary));
+            --gradient-alt: linear-gradient(135deg, var(--secondary), var(--primary));
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .particles-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(120deg); }
+            66% { transform: translateY(20px) rotate(240deg); }
+        }
+
+        /* Neural Network Animation */
+        .neural-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .node {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
+        }
+
+        .connection {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0.1;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 50px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 24px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 800px;
+            animation: slideUp 1s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .typing-text {
+            overflow: hidden;
+            border-right: 2px solid var(--primary);
+            white-space: nowrap;
+            margin: 0 auto;
+            animation: typing 3s steps(40, end), blink-caret 1s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--primary); }
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: var(--bg-primary);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--primary);
+        }
+
+        .btn-download {
+            background: var(--gradient-alt);
+            color: var(--text-primary);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        /* Resume Download Button in Hero */
+        .resume-download {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+            z-index: 100; /* Higher z-index to prevent overlay issues */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.1);
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: scale(1.02);
+            border-color: var(--primary);
+        }
+
+        .skill-category h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+
+        .skill-name {
+            font-weight: 500;
+        }
+
+        .skill-level {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0, 255, 136, 0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: var(--bg-primary);
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: rgba(0, 255, 136, 0.1);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .project-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--primary);
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--gradient);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 4px solid var(--bg-primary);
+        }
+
+        .timeline-date {
+            color: var(--primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-company {
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        .timeline-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-info h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: var(--bg-primary);
+            font-size: 20px;
+        }
+
+        .contact-form {
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-secondary);
+            padding: 40px 50px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gradient);
+            color: var(--bg-primary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 36px;
+            }
+            
+            section {
+                padding: 80px 30px;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 30px 0;
+                text-align: center;
+                transform: translateY(-100vh);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .nav-links a {
+                padding: 15px 0;
+                font-size: 18px;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+                margin-bottom: 40px;
+            }
+            
+            section {
+                padding: 60px 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 250px;
+                justify-content: center;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .timeline {
+                padding-left: 20px;
+            }
+            
+            .timeline::before {
+                left: 10px;
+            }
+            
+            .timeline-item::before {
+                left: -40px;
+            }
+            
+            .skill-category {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .logo {
+                font-size: 20px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-number {
+                font-size: 28px;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-card {
+                margin: 0 10px;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+        }
+
+        /* Scroll Animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="particles-container" id="particles"></div>
+    <div class="neural-bg" id="neuralBg"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">johnson.dev</div>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Johnson Obhalloju</h1>
+            <div class="hero-subtitle typing-text">AI/ML Engineer • Full Stack Developer • Linux Expert</div>
+            <p class="hero-description">
+                Transforming ideas into intelligent solutions with cutting-edge AI/ML technologies, 
+                full-stack development, and mobile applications. Currently engineering the future at Naarsoft.
+            </p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-code"></i>
+                    View Projects
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i>
+                    Get In Touch
+                </a>
+            </div>
+            <div class="resume-download">
+                <a href="July 1.pdf" class="btn btn-download" download="Johnson_Obhalloju_Resume.pdf">
+                    <i class="fas fa-download"></i>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title scroll-reveal">About Me</h2>
+        <div class="about-content">
+            <div class="about-text scroll-reveal">
+                <p>
+                    I'm a <span class="highlight">Junior AI/ML Engineer</span> at Naarsoft, passionate about building 
+                    intelligent systems that solve real-world problems. With expertise spanning machine learning, 
+                    full-stack development, and mobile applications, I bring a unique perspective to every project.
+                </p>
+                <p>
+                    My journey from <span class="highlight">Electrical Engineering</span> to AI/ML has equipped me with 
+                    strong analytical thinking and problem-solving skills. I specialize in developing end-to-end ML solutions, 
+                    creating chatbots with <span class="highlight">LangChain</span>, and deploying scalable applications 
+                    on <span class="highlight">Linux</span> environments.
+                </p>
+                <p>
+                    When I'm not coding, you'll find me exploring the latest in <span class="highlight">Generative AI</span>, 
+                    contributing to open-source projects, or strategizing over a chess game (4-time consecutive champion!).
+                </p>
+            </div>
+            <div class="stats-grid scroll-reveal">
+                <div class="stat-card">
+                    <div class="stat-number">1+</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Tech Companies</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">99.85%</div>
+                    <div class="stat-label">Quality Score</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <h2 class="section-title scroll-reveal">Technical Arsenal</h2>
+        <div class="skills-container">
+            <div class="skill-category scroll-reveal">
+                <h3>AI/ML & Data Science</h3>
+                <div class="skill-item">
+                    <span class="skill-name">Machine Learning</span>
+                    <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">TensorFlow/PyTorch</span>
+                    <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Scikit-learn</span>
+                    <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">LangChain</span>
+                    <span class="skill-level">88%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Generative AI</span>
+                    <span class="skill-level">85%</span>
+                </div>
+            </div>
+            
+            <div class="skill-category scroll-reveal">
+                <h3>Programming & Development</h3>
+                <div class="skill-item">
+                    <span class="skill-name">Python</span>
+                    <span class="skill-level">98%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">JavaScript</span>
+                    <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">SQL</span>
+                    <span class="skill-level">92%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">React/Node.js</span>
+                    <span class="skill-level">88%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Linux/DevOps</span>
+                    <span class="skill-level">85%</span>
+                </div>
+            </div>
+            
+            <div class="skill-category scroll-reveal">
+                <h3>Tools & Platforms</h3>
+                <div class="skill-item">
+                    <span class="skill-name">AWS/GCP</span>
+                    <span class="skill-level">80%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Docker</span>
+                    <span class="skill-level">78%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Git/GitHub</span>
+                    <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Power BI/Tableau</span>
+                    <span class="skill-level">88%</span>
+                </div>
+                <div class="skill-item">
+                    <span class="skill-name">Mobile Development</span>
+                    <span class="skill-level">82%</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2 class="section-title scroll-reveal">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Financial Fraud Detection System</h3>
+                    <p class="project-description">
+                        Real-time fraud detection system with 96%+ AUC score featuring voice alerts, 
+                        animated predictions, and AI chatbot for instant risk analysis.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">XGBoost</span>
+                        <span class="tag">Real-time</span>
+                        <span class="tag">Dash</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Johnson-123-208/Financial_Fraud_Detection_System" class="project-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Medical Image Classification</h3>
+                    <p class="project-description">
+                        CNN-based X-ray classifier with 94%+ accuracy featuring animated Streamlit UI, 
+                        voice output, and real-time image analysis for early disease detection.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">Deep Learning</span>
+                        <span class="tag">CNN</span>
+                        <span class="tag">Computer Vision</span>
+                        <span class="tag">Streamlit</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Johnson-123-208/Medical_Image_Classification_1" class="project-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Generative AI Chatbot</h3>
+                    <p class="project-description">
+                        Intelligent chatbot using LangChain and Transformers with 85% FAQ resolution accuracy, 
+                        improving client support with natural language understanding.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">Transformers</span>
+                        <span class="tag">NLP</span>
+                        <span class="tag">GenAI</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Stock Price Prediction</h3>
+                    <p class="project-description">
+                        LSTM-based stock prediction system with feature engineering for market sentiment analysis 
+                        and real-time price forecasting with advanced visualization.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">LSTM</span>
+                        <span class="tag">Time Series</span>
+                        <span class="tag">Financial ML</span>
+                        <span class="tag">Deep Learning</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Johnson-123-208/Stock_Price_Prediction_1" class="project-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Customer Segmentation System</h3>
+                    <p class="project-description">
+                        Advanced clustering system for customer behavior analysis using K-Means and hierarchical clustering 
+                        with interactive Tableau dashboards for business insights.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">K-Means</span>
+                        <span class="tag">Clustering</span>
+                        <span class="tag">Tableau</span>
+                        <span class="tag">Business Intelligence</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Johnson-123-208/Customer_Segmentation_using_K-Means-Clustering" class="project-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card scroll-reveal">
+                <div class="project-image">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Predictive Maintenance System</h3>
+                    <p class="project-description">
+                        IoT-enabled predictive maintenance using machine learning to predict equipment failures, 
+                        reducing downtime by 35% with real-time monitoring and alerts.
+                    </p>
+                    <div class="project-tags">
+                        <span class="tag">IoT</span>
+                        <span class="tag">Time Series</span>
+                        <span class="tag">Predictive Analytics</span>
+                        <span class="tag">TensorFlow</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Johnson-123-208/Predictive_Maintenance_System" class="project-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="project-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience">
+        <h2 class="section-title scroll-reveal">Professional Journey</h2>
+        <div class="timeline">
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-date">Sep 2025 - Present</div>
+                <h3 class="timeline-title">Junior AI/ML Engineer</h3>
+                <div class="timeline-company">Naarsoft</div>
+                <p class="timeline-description">
+                    Leading full-stack AI/ML development projects, creating intelligent chatbots, and deploying 
+                    scalable solutions on Linux environments. Specializing in mobile application development 
+                    with integrated AI capabilities and cloud deployment strategies.
+                </p>
+            </div>
+
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-date">Jun 2025 - Aug 2025</div>
+                <h3 class="timeline-title">Associate Data Process Analyst</h3>
+                <div class="timeline-company">Tech Mahindra, Hyderabad</div>
+                <p class="timeline-description">
+                    Achieved exceptional performance in Cambridge English test interpretation with 99.71% quality score. 
+                    Set company records processing 864 scripts/day with 99.85% accuracy, surpassing UK benchmark. 
+                    Handled diverse handwriting styles and regional spelling variations.
+                </p>
+            </div>
+
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-date">Dec 2024 - Apr 2025</div>
+                <h3 class="timeline-title">Data Scientist Intern</h3>
+                <div class="timeline-company">Ramanasoft, Hyderabad</div>
+                <p class="timeline-description">
+                    Built ML models achieving 89% accuracy, improving customer targeting by 15%. 
+                    Automated preprocessing pipelines reducing data prep time by 40%. 
+                    Developed Generative AI chatbot with LangChain achieving 85% FAQ resolution accuracy.
+                </p>
+            </div>
+
+            <div class="timeline-item scroll-reveal">
+                <div class="timeline-date">2020 - 2024</div>
+                <h3 class="timeline-title">B.Tech in Electrical Engineering</h3>
+                <div class="timeline-company">JNTUH College of Engineering</div>
+                <p class="timeline-description">
+                    Graduated with 72% and published IEEE paper on "Mathematical Modelling and Performance 
+                    Evaluation of Grid Connected PV System with Hybrid Energy Storage". 
+                    Won First Prize at Project Expo and 4 consecutive Chess Championships.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title scroll-reveal">Let's Build Something Amazing</h2>
+        <div class="contact-content">
+            <div class="contact-info scroll-reveal">
+                <h3>Ready to Collaborate?</h3>
+                <p>
+                    I'm always excited to work on innovative AI/ML projects, full-stack applications, 
+                    or mobile solutions. Whether you need intelligent automation, data-driven insights, 
+                    or cutting-edge development, let's create something extraordinary together.
+                </p>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4>Email</h4>
+                        <p>obhallojujohnson@gmail.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div>
+                        <h4>Phone</h4>
+                        <p>+91 9948405108</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4>Location</h4>
+                        <p>Hyderabad, Telangana, India</p>
+                    </div>
+                </div>
+            </div>
+            
+            <form class="contact-form scroll-reveal">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="copyright">
+                © 2025 Johnson Obhalloju. Crafted with passion & code.
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/Johnson-123-208" class="social-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/johnson-obhalloju-8747a6320/" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://www.kaggle.com/johnsonobhalloju" class="social-link">
+                    <i class="fab fa-kaggle"></i>
+                </a>
+                <a href="https://johnson-123-208.github.io/Portfolio/" class="social-link">
+                    <i class="fas fa-globe"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.min.js"></script>
+    
+    <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn i');
+            
+            navLinks.classList.toggle('active');
+            
+            // Animate hamburger to X
+            if (navLinks.classList.contains('active')) {
+                menuBtn.classList.replace('fa-bars', 'fa-times');
+            } else {
+                menuBtn.classList.replace('fa-times', 'fa-bars');
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const navLinks = document.querySelector('.nav-links');
+                const menuBtn = document.querySelector('.mobile-menu-btn i');
+                
+                navLinks.classList.remove('active');
+                menuBtn.classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Particle System
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = window.innerWidth < 768 ? 30 : 50; // Fewer particles on mobile
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 8 + 4) + 's';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        // Neural Network Background
+        function createNeuralNetwork() {
+            if (window.innerWidth < 768) return; // Skip on mobile for performance
+            
+            const container = document.getElementById('neuralBg');
+            const nodeCount = 20;
+            const nodes = [];
+            
+            // Create nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const node = document.createElement('div');
+                node.className = 'node';
+                node.style.left = Math.random() * 100 + '%';
+                node.style.top = Math.random() * 100 + '%';
+                container.appendChild(node);
+                nodes.push(node);
+            }
+            
+            // Create connections
+            for (let i = 0; i < nodes.length; i++) {
+                for (let j = i + 1; j < nodes.length; j++) {
+                    if (Math.random() < 0.1) { // 10% chance of connection
+                        const connection = document.createElement('div');
+                        connection.className = 'connection';
+                        
+                        const node1Rect = nodes[i].getBoundingClientRect();
+                        const node2Rect = nodes[j].getBoundingClientRect();
+                        
+                        const x1 = node1Rect.left + node1Rect.width / 2;
+                        const y1 = node1Rect.top + node1Rect.height / 2;
+                        const x2 = node2Rect.left + node2Rect.width / 2;
+                        const y2 = node2Rect.top + node2Rect.height / 2;
+                        
+                        const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+                        const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+                        
+                        connection.style.width = length + 'px';
+                        connection.style.left = x1 + 'px';
+                        connection.style.top = y1 + 'px';
+                        connection.style.transform = `rotate(${angle}deg)`;
+                        connection.style.animationDelay = Math.random() * 3 + 's';
+                        
+                        container.appendChild(connection);
+                    }
+                }
+            }
+        }
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed nav
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navigation active state
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.pageYOffset >= sectionTop && 
+                    window.pageYOffset < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.scroll-reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('revealed');
+                }
+            }
+        }
+
+        // Typing animation for hero subtitle
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.textContent = '';
+            element.style.borderRight = '2px solid var(--primary)';
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Blinking cursor effect
+                    setInterval(() => {
+                        element.style.borderRight = element.style.borderRight === 'none' 
+                            ? '2px solid var(--primary)' 
+                            : 'none';
+                    }, 1000);
+                }
+            }
+            type();
+        }
+
+        // Initialize animations
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            setTimeout(createNeuralNetwork, 1000); // Delay to ensure DOM is ready
+            
+            // Start typing animation
+            const typingElement = document.querySelector('.typing-text');
+            const typingText = "AI/ML Engineer • Full Stack Developer • Linux Expert";
+            setTimeout(() => {
+                typeWriter(typingElement, typingText, 80);
+            }, 1500);
+
+            // Initial reveal check
+            revealOnScroll();
+        });
+
+        // Scroll event listeners
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simple form validation and submission logic
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would typically send the data to a server
+            console.log('Form submitted:', data);
+            
+            // Show success message
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Parallax effect for hero section (disabled on mobile for performance)
+        if (window.innerWidth > 768) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const hero = document.querySelector('.hero-content');
+                const particles = document.getElementById('particles');
+                
+                if (hero) {
+                    hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+                
+                if (particles) {
+                    particles.style.transform = `translateY(${scrolled * 0.3}px)`;
+                }
+            });
+        }
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                document.querySelector('.mobile-menu-btn i').classList.replace('fa-times', 'fa-bars');
+            }
+        });
+
+        // Resize handler to recreate particles on orientation change
+        window.addEventListener('resize', () => {
+            const container = document.getElementById('particles');
+            container.innerHTML = '';
+            createParticles();
+        });
+    </script>
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
